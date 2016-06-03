@@ -17,9 +17,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //Site - Routes ==================================================
-app.get('/', function (req, res) {
-    res.send("Hello World");
-});
 
 io.on('connection', function(socket){
   console.log('a user connected');
