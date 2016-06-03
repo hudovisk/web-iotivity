@@ -4,6 +4,8 @@ var app          = express();
 var port         = process.env.PORT || 3000;
 var bodyParser   = require('body-parser');
 var morgan       = require('morgan');
+var http         = require('http').Server(app);
+var io           = require('socket.io')(http);
 
 //app middlewares
 //only show logs with arent testing
@@ -17,6 +19,10 @@ app.use(bodyParser.json());
 //Site - Routes ==================================================
 app.get('/', function (req, res) {
     res.send("Hello World");
+});
+
+io.on('connection', function(socket){
+  console.log('a user connected');
 });
 
 //Server ========================================================= 
