@@ -29,7 +29,7 @@
       ref  : "origin/master",
       repo : "git@github.com:hudovisk/web-iotivity.git",
       path : "/home/ubuntu/web-iotivity",
-      "post-deploy" : "npm install && bower install && pm2 startOrRestart ecosystem.json --env production"
+      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json --env production"
     },
     dev : {
       user : "ubuntu",
@@ -37,7 +37,7 @@
       ref  : "origin/staging",
       repo : "git@github.com:hudovisk/web-iotivity.git",
       path : "/home/ec2-user/web-iotivity-staging",
-      "post-deploy" : "npm install && bower install && pm2 startOrRestart ecosystem.json --env dev"
+      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json --env dev"
     }
   }
 }
