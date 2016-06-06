@@ -1,6 +1,5 @@
 //Modules & set up =========================================================
-var express      = require('express');
-var app          = express();
+var app          = require('express')();
 var port         = process.env.PORT || 3000;
 var bodyParser   = require('body-parser');
 var morgan       = require('morgan');
@@ -31,6 +30,6 @@ io.on('connection', function(socket){
 });
 
 //Server ========================================================= 
-app.listen(port, function() {
+http.listen(port, function() {
     console.log('Listenning on port: ' + port);
 });
