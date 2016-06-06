@@ -31,6 +31,10 @@ io.on('connection', function(socket){
     console.log("New device");
     console.log(device);
   });
+  socket.on("get response", function(getResponse) {
+    console.log("Get response");
+    console.log(getResponse);
+  });
 });
 
 //Server ========================================================= 
