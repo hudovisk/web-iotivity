@@ -30,11 +30,12 @@ io.on('connection', function(socket){
   socket.on("new device", function(device) {
     console.log("New device");
     console.log(device);
-    socket.emit("put");
+
   });
   socket.on("get response", function(getResponse) {
     console.log("Get response");
     console.log(getResponse);
+    socket.emit("put");
   });
 });
 
