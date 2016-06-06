@@ -27,14 +27,9 @@ app.get('/', function (req, res) {
 
 io.on('connection', function(socket){
   console.log('a user connected');
-  socket.on("add user", function(nickname) {
-    console.log("User added: "+nickname);
+  socket.on("new device", function(addr, port) {
+    console.log("New device at "+addr+":"+port);
   });
-
-  socket.on("new message", function(message) {
-    console.log("Message: "+message);
-  });
-
 });
 
 //Server ========================================================= 
