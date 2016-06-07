@@ -17,6 +17,8 @@ var deviceInfo = {
   port: 123
 }
 
+var gatewaySocket;
+
 //app middlewares
 //only show logs with arent testing
 if (process.env.NODE_ENV !== 'test') {
@@ -42,20 +44,24 @@ app.get('/', function (req, res) {
 
 app.get('/getLed', function(req, res) {
     console.log("getLed");
+    gatewaySocket.emit("get");
 });
 
 app.post('/putLed', function(req, res) {
     console.log(req.body);
+    gatewaySocket.emit("put". req.body);
 });
 
 io.on('connection', function(socket){
   console.log('a user connected');
+  gatewaySocket = socket;
+
   socket.on("new device", function(device) {
     console.log("New device");
     console.log(device);
 
     deviceInfo.ip = device.addr;
-    deviceInfo.port = deviceInfo.port;
+    deviceInfo.port = device.port;
 
   });
   socket.on("get response", function(getResponse) {
