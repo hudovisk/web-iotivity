@@ -45,11 +45,18 @@ app.get('/', function (req, res) {
 app.get('/getLed', function(req, res) {
     console.log("getLed");
     gatewaySocket.emit("get");
+    res.status(200).end();
 });
 
 app.post('/putLed', function(req, res) {
     console.log(req.body);
-    gatewaySocket.emit("put", req.body);
+    gatewaySocket.emit("put", 
+      {
+        uri: req.body.uri,
+        power: parseInt(req.body.power),
+        state: parseInt(req.body.state)
+      });
+    res.status(200).end();
 });
 
 io.on('connection', function(socket){
