@@ -49,7 +49,7 @@ app.get('/getLed', function(req, res) {
 
 app.post('/putLed', function(req, res) {
     console.log(req.body);
-    gatewaySocket.emit("put". req.body);
+    gatewaySocket.emit("put", req.body);
 });
 
 io.on('connection', function(socket){
@@ -71,8 +71,6 @@ io.on('connection', function(socket){
     ledResource.uri = getResponse.uri;
     ledResource.power = getResponse.power;
     ledResource.state = getResponse.state;
-
-    socket.emit("put");
   });
 });
 
