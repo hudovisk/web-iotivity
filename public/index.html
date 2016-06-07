@@ -26,33 +26,34 @@
     <script src="script.js"></script>
 
     <div class="container">
-      <div>
-      Device @ <%- device.ip %> : <%- device.port %>
-      </div>
-      <div>
-        <label>LED</label>
-        <label>URI: </label>
-        <%- led.uri %>
-        <label>Power: </label>
-        <%- led.power %>
-        <label>State: </label>
-        <%- led.state %>
-      </div>
+      <% for(int i=0; i < devices.length; i++) { %>
+        <div>
+          Device ID: <%- devices[i].id %> 
+        </div>
+        <div>
+          <label>URI: </label>
+          <%- devices[i].uri %>
+          <% for(int j=0; j < devices[i].attrs.length; j++) { %>
+            <label><%- devices[i].attrs[i].name %>: </label>
+            <%- devices[i].attrs[i].value %>
+          <% } %>
+        </div>
 
-      <div>
-        <form class="form" action="/putLed" method="POST">
-          <input type="hidden" name="uri">
-          <label>Power:</label>
-          <input type="" name="power">
-          <label>State:</label>
-          <input type="" name="state">
-          <button type="submit" class="btn btn-primary">PUT</button>
-        </form>
-      </div>
+        <!-- <div>
+          <form class="form" action="/putLed" method="POST">
+            <input type="hidden" name="uri">
+            <label>Power:</label>
+            <input type="" name="power">
+            <label>State:</label>
+            <input type="" name="state">
+            <button type="submit" class="btn btn-primary">PUT</button>
+          </form>
+        </div>
 
-      <div>
-        <a href="/getLed" class="btn btn-success">GET</a>
-      </div>
+        <div>
+          <a href="/getLed" class="btn btn-success">GET</a>
+        </div> -->
+      <% } %>
 
     </div><!-- /.container -->
 

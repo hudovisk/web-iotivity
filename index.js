@@ -6,6 +6,8 @@ var morgan       = require('morgan');
 var http         = require('http').Server(app);
 var io           = require('socket.io')(http);
 
+var devices = [];
+
 var ledResource = {
   uri: "/a/led",
   power: 100,
@@ -13,8 +15,7 @@ var ledResource = {
 };
 
 var deviceInfo = {
-  ip: "127.0.0.1",
-  port: 123
+  id: ""
 }
 
 var gatewaySocket;
@@ -45,7 +46,7 @@ app.get('/', function (req, res) {
 app.get('/getLed', function(req, res) {
     console.log("getLed");
     gatewaySocket.emit("get");
-    res.status(200).end();
+    res.redirect('../');
 });
 
 app.post('/putLed', function(req, res) {
@@ -56,19 +57,21 @@ app.post('/putLed', function(req, res) {
         power: parseInt(req.body.power),
         state: parseInt(req.body.state)
       });
-    res.status(200).end();
+    res.redirect('../');
 });
 
 io.on('connection', function(socket){
   console.log('a user connected');
   gatewaySocket = socket;
 
-  socket.on("new device", function(device) {
+  socket.on("discovery", function(deviceId) {
     console.log("New device");
-    console.log(device);
+    console.log(deviceId);
 
-    deviceInfo.ip = device.addr;
-    deviceInfo.port = device.port;
+    devices[devices.length] = {
+      deviceId: deviceId,
+      attrs: []
+    };
 
   });
   socket.on("get response", function(getResponse) {
