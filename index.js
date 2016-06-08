@@ -66,10 +66,10 @@ app.post('/put', function(req, res) {
       identifier: req.body.identifier,
       attrs: []
     }
-    for(var device in devices) {
+    devices.forEach(function(device) {
       if(req.body.identifier === device.id) {
         console.log("found device");
-        for(var attr in device.attrs) {
+        device.attrs.forEach(function(attr) {
           Object.keys(req.body).forEach(function(key, index){
             if(attr.name == key)
             {
@@ -81,9 +81,9 @@ app.post('/put', function(req, res) {
               };
             }
           });
-        }
+        });
       }
-    }
+    });
     console.log(putMessage);
     gatewaySocket.emit("put", putMessage);
     res.redirect('../');
