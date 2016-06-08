@@ -79,9 +79,9 @@ io.on('connection', function(socket){
     };
 
   });
-  socket.on("get response", function() {
+  socket.on("get response", function(resp) {
     console.log("Get response");
-    // console.log(getResponse);
+    console.log(resp);
 
     // for(var i=0; i < devices.lenght; i++) {
     //   if(devices[i].id === getResponse.id) {
