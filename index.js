@@ -85,6 +85,7 @@ io.on('connection', function(socket){
 
     for(var i=0; i < devices.lenght; i++) {
       if(devices[i].id === resp.id) {
+        console.log("Copy attrs");
         devices[i].attrs = resp.attrs.slice(0);
         break;
       }
