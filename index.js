@@ -48,6 +48,12 @@ app.get('/getResources', function(req, res) {
     res.redirect('../');
 });
 
+app.get('/discovery', function(req, res) {
+    devices = [];
+    gatewaySocket.emit("discovery");
+    res.redirect('../');
+});
+
 app.get('/clear', function(req, res) {
     console.log("clear");
     devices = [];
@@ -69,7 +75,9 @@ io.on('connection', function(socket){
   console.log('a user connected');
   gatewaySocket = socket;
 
-  socket.on("discovery", function(deviceId) {
+  socket.emit("discovery");
+
+  socket.on("discovery response", function(deviceId) {
     console.log("New device");
     console.log(deviceId);
 

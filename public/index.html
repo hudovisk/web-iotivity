@@ -28,6 +28,7 @@
     <div class="container">
       <div>
         <a href="/getResources" class="btn btn-success">GET</a>
+        <a href="/discovery" class="btn btn-primary">Discovery</a>
         <a href="/clear" class="btn btn-danger">Clear</a>
       </div>
       <% for (var i = 0; i < devices.length; i++) { %>
@@ -40,17 +41,17 @@
           <%- devices[i].attrs[j].value %>
         <% } %>
         </div>
-        <!-- <div>
-          <form class="form" action="/putLed" method="POST">
+        <div>
+          <form class="form" action="/put" method="POST">
             <input type="hidden" name="uri">
-            <label>Power:</label>
-            <input type="" name="power">
-            <label>State:</label>
-            <input type="" name="state">
+            <% for (var j = 0; j < devices[i].attrs.length; j++) { %>
+              <label><%- devices[i].attrs[j].name %></label>
+              <input type="" name='<%- devices[i].attrs[j].name %>'>
+            <% } %>
             <button type="submit" class="btn btn-primary">PUT</button>
           </form>
         </div>
-        -->
+       
       <% } %>
 
     </div><!-- /.container -->
