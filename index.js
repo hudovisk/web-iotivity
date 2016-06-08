@@ -48,6 +48,12 @@ app.get('/getResources', function(req, res) {
     res.redirect('../');
 });
 
+app.get('/clear', function(req, res) {
+    console.log("clear");
+    devices = [];
+    res.redirect('../');
+});
+
 app.post('/putLed', function(req, res) {
     console.log(req.body);
     gatewaySocket.emit("put", 
