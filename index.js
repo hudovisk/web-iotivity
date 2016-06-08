@@ -79,16 +79,16 @@ io.on('connection', function(socket){
     };
 
   });
-  socket.on("get response", function(getResponse) {
+  socket.on("get response", function() {
     console.log("Get response");
-    console.log(getResponse);
+    // console.log(getResponse);
 
-    for(var i=0; i < devices.lenght; i++) {
-      if(devices[i].id === getResponse.id) {
-        devices[i].attrs = getResponse.attrs;
-        break;
-      }
-    }
+    // for(var i=0; i < devices.lenght; i++) {
+    //   if(devices[i].id === getResponse.id) {
+    //     devices[i].attrs = getResponse.attrs;
+    //     break;
+    //   }
+    // }
   });
 });
 
