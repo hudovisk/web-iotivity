@@ -65,7 +65,7 @@ io.on('connection', function(socket){
     console.log(deviceId);
 
     devices[devices.length] = {
-      deviceId: deviceId,
+      id: deviceId,
       attrs: []
     };
 
