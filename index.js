@@ -62,7 +62,29 @@ app.get('/clear', function(req, res) {
 
 app.post('/put', function(req, res) {
     console.log(req.body);
-    gatewaySocket.emit("put", req.body);
+    var putMessage = { 
+      identifier: req.body.identifier,
+      attrs: []
+    }
+    for(var device in devices) {
+      if(req.body.identifier === device.id) {
+        for(var attr in device.attrs) {
+          for (var property in req.body) {
+            if (req.body.hasOwnProperty(property)) {
+              if(attr.name === String(property)) {
+                putMessage.attrs[putMessage.attrs.length] = {
+                  name: String(property),
+                  value: req.body[property],
+                  type: attr.type
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    console.log(putMessage);
+    gatewaySocket.emit("put", putMessage);
     res.redirect('../');
 });
 
