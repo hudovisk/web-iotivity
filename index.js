@@ -39,9 +39,11 @@ app.get('/', function (req, res) {
     res.render('index.html', { devices });
 });
 
-app.get('/getLed', function(req, res) {
-    console.log("getLed");
-    gatewaySocket.emit("get");
+app.get('/getResources', function(req, res) {
+    console.log("getResources");
+    for(var i=0; i < devices.length; i++) {
+      gatewaySocket.emit("get", {identifier: devices[i].id} );
+    }
     res.redirect('../');
 });
 
@@ -74,9 +76,12 @@ io.on('connection', function(socket){
     console.log("Get response");
     console.log(getResponse);
 
-    ledResource.uri = getResponse.uri;
-    ledResource.power = getResponse.power;
-    ledResource.state = getResponse.state;
+    for(var i=0; i < devices.lenght; i++) {
+      if(devices[i].id === getResponse.id) {
+        devices[i].attrs = getResponse.attrs;
+        break;
+      }
+    }
   });
 });
 

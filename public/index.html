@@ -26,11 +26,19 @@
     <script src="script.js"></script>
 
     <div class="container">
+      <div>
+        <a href="/getResources" class="btn btn-success">GET</a>
+      </div>
       <% for (var i = 0; i < devices.length; i++) { %>
         <div>
           Device ID: <%- devices[i].id %> 
         </div>
-
+        <div>
+        <% for (var j = 0; j < devices[i].attrs.length; j++) { %>
+          <label><%- devices[i].attrs[j].name %></label>
+          <%- devices[i].attrs[j].value %>
+        <% } %>
+        </div>
         <!-- <div>
           <form class="form" action="/putLed" method="POST">
             <input type="hidden" name="uri">
@@ -41,10 +49,7 @@
             <button type="submit" class="btn btn-primary">PUT</button>
           </form>
         </div>
-
-        <div>
-          <a href="/getLed" class="btn btn-success">GET</a>
-        </div> -->
+        -->
       <% } %>
 
     </div><!-- /.container -->
