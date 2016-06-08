@@ -83,12 +83,12 @@ io.on('connection', function(socket){
     console.log("Get response");
     console.log(resp);
 
-    // for(var i=0; i < devices.lenght; i++) {
-    //   if(devices[i].id === getResponse.id) {
-    //     devices[i].attrs = getResponse.attrs;
-    //     break;
-    //   }
-    // }
+    for(var i=0; i < devices.lenght; i++) {
+      if(devices[i].id === getResponse.id) {
+        devices[i].attrs = getResponse.attrs;
+        break;
+      }
+    }
   });
 });
 
