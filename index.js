@@ -84,8 +84,8 @@ io.on('connection', function(socket){
     console.log(resp);
 
     for(var i=0; i < devices.lenght; i++) {
-      if(devices[i].id === getResponse.id) {
-        devices[i].attrs = getResponse.attrs;
+      if(devices[i].id === resp.id) {
+        devices[i].attrs = resp.attrs;
         break;
       }
     }
