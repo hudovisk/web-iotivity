@@ -60,14 +60,9 @@ app.get('/clear', function(req, res) {
     res.redirect('../');
 });
 
-app.post('/putLed', function(req, res) {
+app.post('/put', function(req, res) {
     console.log(req.body);
-    gatewaySocket.emit("put", 
-      {
-        uri: req.body.uri,
-        power: parseInt(req.body.power),
-        state: parseInt(req.body.state)
-      });
+    gatewaySocket.emit("put", req.body);
     res.redirect('../');
 });
 

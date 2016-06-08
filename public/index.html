@@ -37,13 +37,13 @@
         </div>
         <div>
         <% for (var j = 0; j < devices[i].attrs.length; j++) { %>
-          <label><%- devices[i].attrs[j].name %></label>
+          <label><%- devices[i].attrs[j].name %>(<%- devices[i].attrs[j].type %>)</label>
           <%- devices[i].attrs[j].value %>
         <% } %>
         </div>
         <div>
           <form class="form" action="/put" method="POST">
-            <input type="hidden" name="uri">
+            <input type="hidden" name="identifier" value='<%- devices[i].id %>'>
             <% for (var j = 0; j < devices[i].attrs.length; j++) { %>
               <label><%- devices[i].attrs[j].name %></label>
               <input type="" name='<%- devices[i].attrs[j].name %>'>
