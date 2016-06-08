@@ -42,8 +42,8 @@ app.get('/', function (req, res) {
 app.get('/getResources', function(req, res) {
     console.log("getResources");
     for(var i=0; i < devices.length; i++) {
-      if(devices[i].id === "coap://[fe80::b5ff:4b82:377a:862b]:38582/a/led")
-        gatewaySocket.emit("get", {identifier: devices[i].id} );
+      // if(devices[i].id === "coap://[fe80::b5ff:4b82:377a:862b]:38582/a/led")
+      gatewaySocket.emit("get", {identifier: devices[i].id} );
     }
     res.redirect('../');
 });
