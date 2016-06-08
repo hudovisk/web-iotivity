@@ -36,11 +36,7 @@ app.use(bodyParser.json());
 
 //Site - Routes ==================================================
 app.get('/', function (req, res) {
-    res.render('index.html', 
-      {
-        led: ledResource,
-        device: deviceInfo
-      });
+    res.render('index.html', { devices: devices });
 });
 
 app.get('/getLed', function(req, res) {
