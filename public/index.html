@@ -26,18 +26,10 @@
     <script src="script.js"></script>
 
     <div class="container">
-      <% for(var i=0; i < devices.length; i++) { %>
+      <% for (var i = 0; i < devices.length; i++) { %>
         <div>
           Device ID: <%- devices[i].id %> 
         </div>
-        <!-- <div>
-          <label>URI: </label>
-          <%- devices[i].uri %>
-          <% for(int j=0; j < devices[i].attrs.length; j++) { %>
-            <label><%- devices[i].attrs[i].name %>: </label>
-            <%- devices[i].attrs[i].value %>
-          <% } %>
-        </div> -->
 
         <!-- <div>
           <form class="form" action="/putLed" method="POST">

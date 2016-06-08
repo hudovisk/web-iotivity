@@ -36,7 +36,7 @@ app.use(bodyParser.json());
 
 //Site - Routes ==================================================
 app.get('/', function (req, res) {
-    res.render('index.html', { devices: devices });
+    res.render('index.html', { devices });
 });
 
 app.get('/getLed', function(req, res) {
