@@ -68,18 +68,19 @@ app.post('/put', function(req, res) {
     }
     for(var device in devices) {
       if(req.body.identifier === device.id) {
+        console.log("found device");
         for(var attr in device.attrs) {
-          for (var property in req.body) {
-            if (req.body.hasOwnProperty(property)) {
-              if(attr.name === String(property)) {
-                putMessage.attrs[putMessage.attrs.length] = {
-                  name: String(property),
-                  value: req.body[property],
+          Object.keys(req.body).forEach(function(key, index){
+            if(attr.name == key)
+            {
+              console.log("found attr");
+              putMessage.attrs[putMessage.attrs.length] = {
+                  name: attr.name,
+                  value: req.body[key],
                   type: attr.type
-                }
-              }
+              };
             }
-          }
+          });
         }
       }
     }
